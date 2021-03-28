@@ -3,13 +3,17 @@
 module.exports = function createDreamTeam( members ) {
   //throw new CustomError('Not implemented');
   // remove line with error and write your code here
-  members = members.filter(e => typeof e === 'string' && e !== '');
-  if (members) {  // && e !== ''
-    for (var i = 0; i < members.length; i++) {
-      members[i] = members[i].replace(/\s/g, '').slice(0,1);
+  if (Array.isArray(members)) {
+    members = members.filter(e => typeof e === 'string' && e !== '');
+    if (members) {  // && e !== ''
+      for (var i = 0; i < members.length; i++) {
+        members[i] = members[i].replace(/\s/g, '').slice(0,1).toUpperCase();
+      }
     }
+    return members.sort().join('');
+  } else {
+    return false;
   }
-  return members.sort().join('').toUpperCase();
 };
 
 
